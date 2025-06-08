@@ -16,26 +16,23 @@ function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  let USERS_API = 'https://jsonplaceholder.typicode.com/users';
-  async function fetchUsersData() {
-    try {
-      const res = await fetch(USERS_API);
-      const fetchData = await res.json();
-      console.log('USERS', fetchData);
-      setUsersData(fetchData);
-    } catch (error) {
-      console.log('Error in fetching data');
-    }
-  }
-
   useEffect(() => {
-    try {
-      fetchUsersData();
-    } finally {
-      setLoading(false);
-    }
-  }, [fetchUsersData]);
+    const fetchUsersData = async () => {
+      try {
+        const res = await fetch('https://jsonplaceholder.typicode.com/users');
+        const fetchData = await res.json();
+        console.log('USERS', fetchData);
+        setUsersData(fetchData);
+      } catch (error) {
+        console.log('Error in fetching data');
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchUsersData();
+  }, []);
+  
   function handleOpenModal() {
     console.log('Modal opened from HomePage component');
     setIsOpen(true);

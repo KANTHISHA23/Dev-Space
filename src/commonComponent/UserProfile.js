@@ -52,59 +52,48 @@ function UserProfile() {
     setIsAlbumModalOpen(true);
   };
 
-  let USERS_DETAIL_API = `https://jsonplaceholder.typicode.com/users/${userId}`;
-  async function fetchUser() {
-    try {
-      const res = await fetch(USERS_DETAIL_API);
-      const data1 = await res.json();
-      setUser(data1);
-    } catch (error) {
-      console.log('Error in fetching user');
-    }
-  }
-
-  let USERS_POSTS_API = `https://jsonplaceholder.typicode.com/users/${userId}/posts`;
-
-  async function fetchPosts() {
-    try {
-      const res = await fetch(USERS_POSTS_API);
-      const data2 = await res.json();
-      setPosts(data2);
-    } catch (error) {
-      console.log('Error in fetching posts');
-    }
-  }
-
-  let USERS_ALBUMS_API = `https://jsonplaceholder.typicode.com/users/${userId}/albums`;
-
-  async function fetchAlbums() {
-    const res = await fetch(USERS_ALBUMS_API);
-    const data3 = await res.json();
-    setAlbums(data3);
-  }
-
   useEffect(() => {
-    try {
-      setLoading(true);
-      fetchAlbums();
-    } catch (error) {
-      console.log('Error in fetching albums');
-    } finally {
-      setLoading(false);
-    }
+    const fetchUserAndPosts = async () => {
+      try {
+        setLoading(true);
+  
+        const userRes = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
+        const userData = await userRes.json();
+        setUser(userData);
+  
+        const postsRes = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}/posts`);
+        const postsData = await postsRes.json();
+        setPosts(postsData);
+  
+      } catch (error) {
+        console.log('Error in fetching user or posts');
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchUserAndPosts();
   }, [userId]);
-
+  
   useEffect(() => {
-    try {
-      setLoading(true);
-      fetchUser();
-      fetchPosts();
-    } catch (error) {
-      console.log('Error in fetching albums');
-    } finally {
-      setLoading(false);
-    }
-  }, [userId, fetchUser, fetchPosts]);
+    const fetchAlbums = async () => {
+      try {
+        setLoading(true);
+  
+        const res = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}/albums`);
+        const albumsData = await res.json();
+        setAlbums(albumsData);
+  
+      } catch (error) {
+        console.log('Error in fetching albums');
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchAlbums();
+  }, [userId]);
+  
 
   const handleChange = (event, newValue) => setValue(newValue);
 

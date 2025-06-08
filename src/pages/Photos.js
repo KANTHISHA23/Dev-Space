@@ -15,23 +15,23 @@ function Photos() {
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const { albumId } = useParams();
-  let USERS_PHOTOS_API = `https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`;
-  async function fetchPhotos() {
-    const res = await fetch(USERS_PHOTOS_API);
-    const data5 = await res.json();
-    setPhotos(data5);
-  }
-
+  
   useEffect(() => {
-    try {
-      setLoading(true);
-      fetchPhotos();
-    } catch (error) {
-      console.log('Error in fetching albums');
-    } finally {
-      setLoading(false);
-    }
-  }, [albumId, fetchPhotos]);
+    const fetchPhotos = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`);
+        const data = await res.json();
+        setPhotos(data);
+      } catch (error) {
+        console.log('Error in fetching photos');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPhotos();
+  }, [albumId]);
 
   if (loading) {
     return (
