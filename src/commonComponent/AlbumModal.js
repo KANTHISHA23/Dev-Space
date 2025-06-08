@@ -19,11 +19,11 @@ function AlbumModal({
     title: '',
   });
 
-  const handleOpenModal = () => {
+  const handleOpenModal = useCallback(() => {
     setModalAlbums({
       title: selectedCard?.title || '',
     });
-  };
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

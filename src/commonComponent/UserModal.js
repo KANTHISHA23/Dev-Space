@@ -28,7 +28,7 @@ function UserModal({
     companyCatchPhrase: '',
     bs: '',
   });
-  const handleOpenModal = () => {
+  const handleOpenModal = useCallback(() => {
     setModalUserData({
       name: selectedUser?.name || '',
       email: selectedUser?.email || '',
@@ -42,7 +42,7 @@ function UserModal({
       companyCatchPhrase: selectedUser?.company?.catchPhrase || '',
       bs: selectedUser?.company?.bs || '',
     });
-  };
+  });
 
   const handleCloseModal = () => {
     setIsOpen(false);

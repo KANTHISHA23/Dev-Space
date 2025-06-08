@@ -30,7 +30,7 @@ function Comments() {
     } finally {
       setLoading(false, fetchComments);
     }
-  }, [postId]);
+  }, [postId, fetchComments]);
 
   if (loading) {
     return (

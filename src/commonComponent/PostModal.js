@@ -26,12 +26,12 @@ function PostModal({
     }
   };
 
-  const handleOpenModal = () => {
+  const handleOpenModal = useCallback(() => {
     setModalPost({
       title: selectedCard?.title || '',
       body: selectedCard?.body || '',
     });
-  };
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
