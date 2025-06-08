@@ -34,7 +34,7 @@ function Home() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [fetchUsersData]);
 
   function handleOpenModal() {
     console.log('Modal opened from HomePage component');

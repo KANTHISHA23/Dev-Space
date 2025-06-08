@@ -96,7 +96,7 @@ function PostModal({
   // to show the data initially in the modal
   useEffect(() => {
     handleOpenModal();
-  }, [isPostModalOpen, selectedCard]);
+  }, [isPostModalOpen, selectedCard, handleOpenModal]);
 
   return (
     <Modal open={isPostModalOpen} onClose={handleCloseModal}>

@@ -31,7 +31,7 @@ function Photos() {
     } finally {
       setLoading(false);
     }
-  }, [albumId]);
+  }, [albumId, fetchPhotos]);
 
   if (loading) {
     return (

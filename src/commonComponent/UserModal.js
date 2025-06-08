@@ -147,7 +147,7 @@ function UserModal({
   // Call the handleOpenModal callback whenever the modal is opened from card or home page component
   useEffect(() => {
     handleOpenModal();
-  }, [isOpen, selectedUser]); //will run if either isOpen or user changes between renders
+  }, [isOpen, selectedUser, handleOpenModal]); //will run if either isOpen or user changes between renders
 
   return (
     <Modal open={isOpen} onClose={handleCloseModal}>

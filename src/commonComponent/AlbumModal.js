@@ -95,7 +95,7 @@ function AlbumModal({
   // to show the data initially in the modal
   useEffect(() => {
     handleOpenModal();
-  }, [isAlbumModalOpen, selectedCard]);
+  }, [isAlbumModalOpen, selectedCard, handleOpenModal]);
 
   return (
     <Modal open={isAlbumModalOpen} onClose={handleCloseModal}>

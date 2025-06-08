@@ -25,7 +25,7 @@ function Posts() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [fetchPosts]);
 
   if (loading) {
     return (
@@ -56,7 +56,7 @@ function Posts() {
         <Typography
           variant='h4'
           sx={{
-            color: 'black',
+            // color: 'black',
             fontFamily: 'lobster',
             textAlign: 'center',
             padding: 3,

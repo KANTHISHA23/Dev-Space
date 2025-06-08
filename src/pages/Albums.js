@@ -25,7 +25,7 @@ function Albums() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [fetchAlbums]);
 
   if (loading) {
     return (
@@ -56,7 +56,7 @@ function Albums() {
         <Typography
           variant='h4'
           sx={{
-            color: 'black',
+            // color: 'black',
             fontFamily: 'lobster',
             textAlign: 'center',
             padding: 3,

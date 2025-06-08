@@ -28,7 +28,7 @@ function Comments() {
     } catch (error) {
       console.log('Error in fetching albums');
     } finally {
-      setLoading(false);
+      setLoading(false, fetchComments);
     }
   }, [postId]);
 

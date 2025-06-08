@@ -104,7 +104,7 @@ function UserProfile() {
     } finally {
       setLoading(false);
     }
-  }, [userId]);
+  }, [userId, fetchUser, fetchPosts]);
 
   const handleChange = (event, newValue) => setValue(newValue);
 
