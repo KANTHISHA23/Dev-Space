@@ -31,7 +31,7 @@ function PostModal({
       title: selectedCard?.title || '',
       body: selectedCard?.body || '',
     });
-  });
+  }, [selectedCard?.title, selectedCard?.body]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

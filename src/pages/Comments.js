@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   Card,
@@ -16,11 +16,11 @@ function Comments() {
 
   let USERS_COMMENTS_API = `https://jsonplaceholder.typicode.com/posts/${postId}/comments`;
 
-  async function fetchComments() {
+  const fetchComments = useCallback(async () => {
     const res = await fetch(USERS_COMMENTS_API);
     const data4 = await res.json();
     setComments(data4);
-  }
+  }, [USERS_COMMENTS_API]);
 
   useEffect(() => {
     try {

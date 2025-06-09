@@ -23,7 +23,7 @@ function AlbumModal({
     setModalAlbums({
       title: selectedCard?.title || '',
     });
-  });
+  }, [selectedCard?.title]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

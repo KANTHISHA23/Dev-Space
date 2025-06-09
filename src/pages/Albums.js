@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Container, Typography, Box, CircularProgress } from '@mui/material';
 import Navbar from '../commonComponent/Navbar';
 import AlbumCard from '../commonComponent/AlbumCard';
@@ -8,7 +8,7 @@ function Albums() {
   const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  async function fetchAlbums() {
+  const fetchAlbums = useCallback(async () => {
     try {
       const res = await fetch(ALBUMS_API);
       const fetchAlbums = await res.json();
@@ -17,7 +17,7 @@ function Albums() {
     } catch (error) {
       console.log('Error in fetching posts');
     }
-  }
+  }, [ALBUMS_API]); // Add dependencies here if ALBUMS_API is dynamic
 
   useEffect(() => {
     try {

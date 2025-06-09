@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PostsCard from '../commonComponent/PostsCard';
 import Navbar from '../commonComponent/Navbar';
 import { Container, Typography, Box, CircularProgress } from '@mui/material';
@@ -8,7 +8,7 @@ function Posts() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  async function fetchPosts() {
+  const fetchPosts = useCallback(async () => {
     try {
       const res = await fetch(POSTS_API);
       const fetchPosts = await res.json();
@@ -17,7 +17,7 @@ function Posts() {
     } catch (error) {
       console.log('Error in fetching posts');
     }
-  }
+  }, [POSTS_API]);
 
   useEffect(() => {
     try {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -42,7 +42,19 @@ function UserModal({
       companyCatchPhrase: selectedUser?.company?.catchPhrase || '',
       bs: selectedUser?.company?.bs || '',
     });
-  });
+  }, [
+    selectedUser?.name,
+    selectedUser?.email,
+    selectedUser?.phone,
+    selectedUser?.website,
+    selectedUser?.address?.street,
+    selectedUser?.address?.suite,
+    selectedUser?.address?.city,
+    selectedUser?.address?.zipcode,
+    selectedUser?.company?.name,
+    selectedUser?.company?.catchPhrase,
+    selectedUser?.company?.bs,
+  ]);
 
   const handleCloseModal = () => {
     setIsOpen(false);
